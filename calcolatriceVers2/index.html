@@ -5,7 +5,10 @@
         <!--metto il foglio di stile-->
         <link href="style/style.css" rel="stylesheet" type="text/css">
         <!--codice java script-->
-        <script src = "script/script.js"></script>
+        <script script type="text/javascript" language="javascript" src = "script/myCalcolatrice.js"></script>
+        <script>
+            const calcolatrice = new CCalcolatrice(); // istanzio un oggetto calcolatrice
+        </script>
     </head>
     <body>
         <h1>Calcolatrice</h1>
@@ -17,63 +20,69 @@
             </tr>
             <tr>
                 <td>
-                    <button type="button" id = "1" onclick = addChar(1)>1</button>
+                    <button type="button" id = "1" onclick = "calcolatrice.addChar(1)">1</button>
                 </td>
                 <td>
-                    <button type="button" id = "2" onclick = addChar(2)>2</button>
+                    <button type="button" id = "2" onclick = "calcolatrice.addChar(2)">2</button>
                 </td>
                 <td>
-                    <button type="button" id = "3" onclick = addChar(3)>3</button>
+                    <button type="button" id = "3" onclick = "calcolatrice.addChar(3)">3</button>
                 </td>
                 <td>
-                    <button type="button" id = "+" class = "op" onclick = 'scegliOperatore("+")'>+</button>
+                    <button type="button" id = "+" class = "op" onclick = "calcolatrice.scegliOperazione('+')">+</button>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button type="button" id = "4" onclick = addChar(4)>4</button>
+                    <button type="button" id = "4" onclick = "calcolatrice.addChar(4)">4</button>
                 </td>
                 <td>
-                    <button type="button" id = "5" onclick = addChar(5)>5</button>
+                    <button type="button" id = "5" onclick = "calcolatrice.addChar(5)">5</button>
                 </td>
                 <td>
-                    <button type="button" id = "6" onclick = addChar(6)>6</button>
+                    <button type="button" id = "6" onclick = "calcolatrice.addChar(6)">6</button>
                 </td>
                 <td>
-                    <button type="button" id = "-" class = "op" onclick = 'scegliOperatore("-")'>-</button>
+                    <button type="button" id = "-" class = "op" onclick = "calcolatrice.scegliOperazione('-')">-</button>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button type="button" id = "7" onclick = addChar(7)>7</button>
+                    <button type="button" id = "7" onclick = "calcolatrice.addChar(7)">7</button>
                 </td>
                 <td>
-                    <button type="button" id = "8" onclick = addChar(8)>8</button>
+                    <button type="button" id = "8" onclick = "calcolatrice.addChar(8)">8</button>
                 </td>
                 <td>
-                    <button type="button" id = "9" onclick = addChar(9)>9</button>
+                    <button type="button" id = "9" onclick = "calcolatrice.addChar(9)">9</button>
                 </td>
                 <td>
-                    <button type="button" id = "*" class = "op" onclick = 'scegliOperatore("*")'>*</button>
+                    <button type="button" id = "*" class = "op" onclick = "calcolatrice.scegliOperazione('*')">*</button>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button type="button" id = "canc_tutto" onclick = "addChar('ce')">CE</button>
+                    <button type="button" id = "canc_tutto" onclick = "calcolatrice.addChar('ce')">CE</button>
                 </td>
                 <td>
-                    <button type="button" id = "0" onclick = addChar(0)>0</button>
+                    <button type="button" id = "0" onclick = "calcolatrice.addChar(0)">0</button>
                 </td>
                 <td>
-                    <button type="button" id = "canc" onclick = "addChar('c')">C</button>
+                    <button type="button" id = "canc" onclick = "calcolatrice.addChar('c')">C</button>
                 </td>
                 <td>
-                    <button type="button" id = "/" class = "op" onclick = 'scegliOperatore("/")'>/</button>
+                    <button type="button" id = "/" class = "op" onclick = "calcolatrice.scegliOperazione('/')">/</button>
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
-                    <button id="=" onclick=calcola() class = "uguale">=</button>
+                <td>
+                    <button type="button" onclick = "calcolatrice.segnoNegativo()" id = "piuomeno" class = "op">+/-</button>
+                </td>
+                <td colspan="2">
+                    <button id="=" onclick = "calcolatrice.calcola()" class = "uguale">=</button>
+                </td>    
+                <td>
+                    <button type="button" id = "punto" onclick = "calcolatrice.addChar('.')" class = "op">.</button>
                 </td>
             </tr>
         </table>
