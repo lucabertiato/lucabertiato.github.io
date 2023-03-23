@@ -37,7 +37,7 @@ class CCalcolatrice{
     }
 
     scegliOperazione(op){
-        this.parziale = this.corrente;
+        this.parziale = document.getElementById("display").innerHTML;
         this.operazione = op;
         document.getElementById("display").innerHTML = "";
         this.corrente = null;
