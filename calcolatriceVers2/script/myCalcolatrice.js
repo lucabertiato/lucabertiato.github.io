@@ -3,6 +3,7 @@ class CCalcolatrice{
         this.parziale = null;
         this.corrente = null;
         this.operazione = null;
+        this.isMeno = false;
     }
 
     addChar(car) {
@@ -70,9 +71,24 @@ class CCalcolatrice{
     }
 
     segnoNegativo(){
-        let temp = document.getElementById("display").innerHTML;
-        temp = "-" + temp;
-        document.getElementById("display").innerHTML = temp;
-        this.corrente = temp;
+        if(this.isMeno == false){
+            let temp = document.getElementById("display").innerHTML;
+            if(temp == 0 || temp == "")
+                alert("impossibile mettere il segno meno");
+            else{
+                temp = "-" + temp;
+                document.getElementById("display").innerHTML = temp;
+                this.corrente = temp;
+                this.isMeno = true;
+            }
+        }
+        else{
+            let temp = document.getElementById("display").innerHTML;
+            temp = temp.substring(1);
+            document.getElementById("display").innerHTML = temp;
+            this.corrente = temp;
+            this.isMeno = false;
+        }
+        
     }
 }
