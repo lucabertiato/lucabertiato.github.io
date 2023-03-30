@@ -32,6 +32,11 @@ class CCalcolatrice{
 
         //in questo caso o è un numero o è un punto
         else{
+            //se si sta per dividere un numero per 0
+            if(car == '0' && this.operazione == "/"){
+                alert("impossibile dividere un numero per 0");
+                return 0;
+            }
             document.getElementById("display").innerHTML = temp + car;
             this.corrente = document.getElementById("display").innerHTML;
         }
