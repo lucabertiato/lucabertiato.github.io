@@ -1,0 +1,45 @@
+#home{
+    text-align: center;
+}
+#imgHome{
+    width: 5%;
+}
+table{
+    width: 75%;
+    height: 300px;
+}
+table, tr, td{ 
+    border: 5px solid black;
+    text-align: center;
+}
+td{
+    border-radius: 5%;
+}
+body{
+    background-color: antiquewhite;
+}
+h1{
+    font-size: 42pt;
+    text-align: center;
+    margin-top: 1%;
+}
+.bottone{
+    width: 20%;
+    background-color: darkseagreen;
+    height: 7%;
+    font-size: 32pt;    
+}
+#bSpin{
+    margin-left: 25%;
+}
+#bReset{
+    margin-left: 10%;
+}
+.cellaSlot{
+    width: 300px;
+    height: 300px;
+}
+.testo{
+    text-align: center;
+    font-size: 28pt;
+}
