@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To-Do-List</title>
+        <!--metto il foglio di stile-->
+        <link href="style/myStyle.css" rel="stylesheet" type="text/css">
+        <!--codice java script-->
+        <script script type="text/javascript" language="javascript" src = "script/CEvento.js"></script>
+        <script script type="text/javascript" language="javascript" src = "script/CListaEventi.js"></script>
+        <script>
+            //istanzio un oggetto listaEventi
+            const lista = new CListaEventi();
+        </script>
+    </head>
+    <body>
+        <h1>To-Do-List</h1>
+
+        <!--riga x la creazione di una nuova attività-->
+        <input type="date" id="data" value="">
+        nome attività: 
+        <input type="text" id="attivita">
+        <button id="add" onclick="lista.aggiungiEvento()">Aggiungi</button>
+        <button id="cancAll" onclick="lista.eliminaTutto()">Elimina tutto</button>
+
+        <br><br><br>
+
+        <!--tabella x elenco attività-->
+        <table align="center">
+            <tr>
+                <th>Stato</th>
+                <th>Nome attività</th>
+                <th>Elimina</th>
+            </tr>
+        </table>
+    </body>
+</html>
