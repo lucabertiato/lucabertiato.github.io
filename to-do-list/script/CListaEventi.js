@@ -97,13 +97,16 @@ class CListaEventi {
     }
 
     //modifica lo stato dell'evento --> completato o non completato
-    //NON FUNZIONA
     modificaStatoAttivita(i) {
         this.listaAttivita[i].modificaStato();
+        
         let vettNomeAttivita = document.getElementsByClassName("nomeAttivita");
-        alert(this.vettNomeAttivita[i].isCompletata);
-        if(this.vettNomeAttivita[i].isCompletata == true) {
-            vettNomeAttivita[i].style.cssText = line-throght;
+
+        if(this.listaAttivita[i].isCompletata == true) {
+            vettNomeAttivita[i].style.textDecoration = "line-through";
+        }
+        else{
+            vettNomeAttivita[i].style.textDecoration = "none";
         }
     }
 }
