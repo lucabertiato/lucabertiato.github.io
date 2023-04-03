@@ -55,7 +55,7 @@ class CSlot{
             this.vincita = 20 * (this.vettoreNum[1] + 1);
         }
         //primo e terzo
-        else if(this.vettoreNum[0] == this.vettoreNum[3]){
+        else if(this.vettoreNum[0] == this.vettoreNum[2]){
             this.vincita = 5 * (this.vettoreNum[0] + 1);
         }
 
