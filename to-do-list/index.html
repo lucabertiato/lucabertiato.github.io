@@ -17,14 +17,19 @@
 
         <!--riga x la creazione di una nuova attività-->
         <input type="date" id="data" value="">
-        nome attività: 
+        nome attività:  
         <input type="text" id="attivita">
         <button id="add" onclick="lista.aggiungiEvento()">Aggiungi</button>
         <button id="cancAll" onclick="lista.eliminaTutto()">Elimina tutto</button>
+        <br>
+        mostra attività urgenti: 
+        <input type="checkbox" id="urgente" onchange="lista.mostraUrgenti();">
+        <button id="ordinaStato" onclick="lista.ordinaPerStato()">Ordina per stato</button>
 
         <br><br><br>
 
         <!--tabella x elenco attività-->
+        <p id="textOrientamento">LISTA ORDINATA PER DATA</p>
         <table align="center">
             <tr>
                 <th>Stato</th>
