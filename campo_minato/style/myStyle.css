@@ -1,0 +1,54 @@
+/*schermo in alto*/
+.container-header{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 520px;
+    text-align: center;
+    margin-top: 5px;
+    height: 20px;
+}
+.cellaSchermo{
+    border: 1px solid black;
+    background-color: lightskyblue;
+}
+
+/*bottone reset*/
+button{
+    background-color: lightskyblue;
+    border: 1px solid lightskyblue;
+    width: 100%;
+}
+
+/*campo da gioco*/
+.container-playground{
+    /*10 celle per riga*/
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    display: grid;
+    width: 500px;
+}
+/*tipi di celle*/
+/*mine*/
+.mina{
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.celleChiuse {
+    background-color: lightgray;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    top: 50%;
+}
+.celleChiuse:hover {
+    background-color: rgb(93, 93, 97);
+}
+.celleAperte {
+    background-color: lightcyan;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    width: 50px;
+    height: 50px;
+}
+
