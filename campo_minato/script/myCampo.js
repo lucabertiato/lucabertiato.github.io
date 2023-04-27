@@ -28,6 +28,10 @@ class myCampo{
 
     //creo il campo con la grafica
     creaCampoDaGioco(){
+        //modifico la prima cella dello schermo in alto
+        $(document).ready(function(){
+            $("#mine").text("mine presenti: " + this.numeroMine);
+        });
         //prima di tutti piazza le bombe
         this.generaXYMine();
         //per tutte le righe
