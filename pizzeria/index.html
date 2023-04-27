@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--metto il foglio di stile-->
+        <link href="style/myStyle.css" rel="stylesheet" type="text/css">
+        <!--codice java script-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src = "script/ElencoPizze.js"></script>
+        <script>
+            const ordine = new ElencoPizze();
+        </script>
+    </head>
+    <body>
+        <h1>PIZZERIA</h1>
+        <table>
+            <tr>
+                <td id="colonnaGrid">
+                    <!--grid-->
+                    <div class="grid-container"  id="menu">
+                        <div class="grid-item" onclick="ordine.addPizza('margherita')">
+                            margherita
+                        </div>
+                        <div class="grid-item" onclick="ordine.addPizza('prosciutto')">
+                            prosciutto
+                        </div>
+                        <div class="grid-item" onclick="ordine.addPizza('patatine')">
+                            patatine
+                        </div>
+                        <div class="grid-item" onclick="ordine.addPizza('wurstel')">
+                            wurstel
+                        </div>
+                        <div class="grid-item" onclick="ordine.addPizza('rucola')">
+                            rucola
+                        </div>
+                        <div class="grid-item" onclick="ordine.addPizza('salame piccante')">
+                            salame piccante
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <!--immagine pizzaiolo-->
+                    <p><img src="images/pizzaiolo.png"></p>
+                </td>
+                <td>
+                    <!--ordinazioni-->
+                    <p>Lista:</p> 
+                    <div class="grid-container" id="elenco">
+                        <div class="lista-item">
+                            <b>Tipo</b>
+                        </div>
+                        <div class="lista-item">
+                            <b>Num</b>
+                        </div>
+                    </div>
+                    <!--tasto reset-->
+                    <br>
+                    <button onclick="ordine.ricarica()">RESET</button>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
