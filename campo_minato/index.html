@@ -10,10 +10,13 @@
         <script src="script/myCampo.js"></script>
         <script src="script/myOrologio.js"></script>
         <script type="text/javascript">
-            const tabellone = new myCampo(10);
-            tabellone.creaCampoDaGioco();
+        $(document).ready(function () {
+                const tabellone = new myCampo(10);
+                tabellone.creaCampoDaGioco();
+        });
         </script>
     </head>
+
     <body>
         <div class="container-header">
             <!--numero di mine presenti-->
@@ -22,7 +25,7 @@
             </div>
             <!--ripristina-->
             <div class="cellaSchermo" id="ripristina">
-                <button onclick= "tabellone.ripristina()";>reset</button>
+                <button onclick="tabellone.ripristina()" ;>reset</button>
             </div>
             <!--orologio-->
             <div class="cellaSchermo" id="tempo">
@@ -31,9 +34,9 @@
         </div>
         <!--campo gioco con le varie celle-->
         <div class="container-playground" id="celle">
-            
+
         </div>
-        
+
         
     </body>
 </html>
