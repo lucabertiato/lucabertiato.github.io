@@ -1,5 +1,5 @@
-class myCampo{
-    constructor(numColonne){
+class myCampo {
+    constructor(numColonne) {
         this.colonne = numColonne;
         this.righe = 10;
         this.numeroMine = 10;
@@ -8,10 +8,10 @@ class myCampo{
     }
 
     //genera coordinate casuali per le mine
-    generaXYMine(){
+    generaXYMine() {
         let r, c, temp;
         //per quante sono le mine da mettere
-        for(let i = 0; i <= this.numeroMine; i++){
+        for (let i = 0; i <= this.numeroMine; i++) {
             c = this.generaRandom(this.colonne);
             r = this.generaRandom(this.righe);
             temp = r + ";" + c;
@@ -22,60 +22,57 @@ class myCampo{
     }
 
     //ricomincia il gioco
-    ripristina(){
+    ripristina() {
         location.reload();
     }
 
     //creo il campo con la grafica
-    creaCampoDaGioco(){
+    creaCampoDaGioco() {
         //modifico la prima cella dello schermo in alto
-        $(document).ready(function(){
-            $("#mine").text("mine presenti: " + this.numeroMine);
-        });
+        $("#mine").text("mine presenti: " + this.numeroMine);
+
         //prima di tutti piazza le bombe
         this.generaXYMine();
         //per tutte le righe
-        for(let i = 0; i < this.righe; i++){
+        for (let i = 0; i < this.righe; i++) {
             this.addRigaCelle(i);
         }
     }
 
     //se la cella contiene una mina
-    isMina(r, c){
+    isMina(r, c) {
         let vettTempXY = [];
-        for(let i = 0; i < this.vettMineXY.length - 1; i++){
+        for (let i = 0; i < this.vettMineXY.length - 1; i++) {
             vettTempXY = this.vettMineXY[i].split(';');
             //se le righe combaciano
-            if(vettTempXY[0] == r && vettTempXY[1] == c)
+            if (vettTempXY[0] == r && vettTempXY[1] == c)
                 return true;
         }
         return false;
     }
 
     //genera un numero casale
-    generaRandom(max){
+    generaRandom(max) {
         return Math.floor(Math.random() * max);
     }
 
 
     //metodo che aggiunge una riga alla volta con il controllo se sono o meno mine
-    addRigaCelle(numR){
-        for(let c = 0; c < this.colonne; c++){
+    addRigaCelle(numR) {
+        for (let c = 0; c < this.colonne; c++) {
             //se è una mina
-            if(this.isMina(numR, c) == true){
+            if (this.isMina(numR, c) == true) {
                 //prendo il div che deve contenere il campo e ci salvo una mina
-                $(document).ready(function(){
-                    $("#celle").append("<div class='mina' data-row=" + numR + " data-coloumn=" + c + "></div>");
-                });
+                $("#celle").append("<div class='mina' data-row=" + numR + " data-coloumn=" + c + "></div>");
+
             }
-            else{
+            else {
                 //prendo il div che deve contenere il campo
-                $(document).ready(function(){
-                    $("#celle").append("<div class='celleChiuse' data-row=" + numR + " data-coloumn=" + c + "></div>");
-                });
+                $("#celle").append("<div class='celleChiuse' data-row=" + numR + " data-coloumn=" + c + "></div>");
+
             }
-            
+
         }
-        
+
     }
 }
