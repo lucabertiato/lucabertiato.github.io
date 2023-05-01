@@ -10,10 +10,20 @@
         <script src="script/myCampo.js"></script>
         <script src="script/myOrologio.js"></script>
         <script type="text/javascript">
-        $(document).ready(function () {
-                const tabellone = new myCampo(10);
+            const tabellone = new myCampo(10, 10);
+            //appena il documento è pronto
+            $(document).ready(function () {
+                //creo il campo e posiziono le mine
                 tabellone.creaCampoDaGioco();
-        });
+
+                //controllo i click con il sinistro
+                $('.celleChiuse').click(function () {
+                    //prendo riga e colonna
+                    let rigaClick = parseInt($(this).attr("data-row"));
+                    let colonnaClick = parseInt($(this).attr("data-coloumn"));
+                    tabellone.controlloClick(rigaClick, colonnaClick);
+                });
+            });
         </script>
     </head>
 
@@ -28,8 +38,7 @@
                 <button onclick="tabellone.ripristina()" ;>reset</button>
             </div>
             <!--orologio-->
-            <div class="cellaSchermo" id="tempo">
-                --orologio--
+            <div class="cellaSchermo" id="feedback">
             </div>
         </div>
         <!--campo gioco con le varie celle-->
