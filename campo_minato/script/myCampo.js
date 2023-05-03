@@ -1,11 +1,14 @@
 class myCampo {
-    constructor(numColonne, numMine) {
+    constructor(numRighe, numColonne, numMine) {
         this.colonne = numColonne;
-        this.righe = 10;
+        this.righe = numRighe;
         this.numeroMine = numMine;
         this.matriceCelle = [];
         this.mineTrovate = 0;
         this.isGiocoInCorso = true;
+        this.bandierine = 0;
+        this.aperte = 0;
+        this.totCelle = this.righe * this.colonne;
     }
 
     //genera coordinate casuali per le mine
@@ -40,6 +43,10 @@ class myCampo {
     //ricomincia il gioco
     ripristina() {
         location.reload();
+    }
+
+    eliminaTuttoHtml(){
+        $("#celle").html("");
     }
 
     //creo il campo con la grafica
@@ -82,21 +89,22 @@ class myCampo {
             //se hai preso un mina
             if (this.matriceCelle[rigaCella][colonnaCella].cellaIsMina == true) {
                 $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaMina");
-                alert("hai perso");
+                $("#feedback").text("hai perso");
                 this.isGiocoInCorso = false;
                 this.visualizzaTutteMine();
                 return 0;
             }
-            
+
+            //altrimenti hai preso una cella normale
             $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaBianca");
             if(this.matriceCelle[rigaCella][colonnaCella].numMineVicine != 0)
                 $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').html(this.matriceCelle[rigaCella][colonnaCella].numMineVicine);
 
             this.matriceCelle[rigaCella][colonnaCella].stato = "aperta";
 
-            
+            this.aperte++;
 
-            //se non è una mina può essere due cose
+            //se hai preso una cella vuota
             if (this.matriceCelle[rigaCella][colonnaCella].numMineVicine == 0) {
                 $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaBianca");
                 for(var contR = rigaCella-1; contR <=rigaCella + 1; contR++){
@@ -105,6 +113,11 @@ class myCampo {
                             this.controlloClick(contR, contC);
                     }
                 }
+            }
+
+            if(this.aperte == this.totCelle - this.numeroMine){
+                $("#feedback").text("hai vinto!!");
+                this.isGiocoInCorso = false;
             }
         }
         else
@@ -124,17 +137,48 @@ class myCampo {
 
     mettiBandierina(rCella, cCella) {
         if (this.isGiocoInCorso) {
-            //se click su cella aperta
-            //if (this.matriceCelle[rCella][cCella].stato == "aperta")
-               // return 0;
+            //se hai preso una cella chiusa 
+            if (this.matriceCelle[rCella][cCella].stato == "chiusa"){
+                $('.celleChiuse[data-row=' + rCella + '][data-coloumn=' + cCella + ']').addClass("celleBandierina");
+                //se hai preso un mina
+                if (this.matriceCelle[rCella][cCella].cellaIsMina == true){
+                    this.mineTrovate++;
+                }
+                this.bandierine++;
+                this.matriceCelle[rCella][cCella].stato = "flag";
+                this.aggiornaNumeroMineNelCampo();
+            }
 
-            //se hai preso un mina
-            if (this.matriceCelle[rCella][cCella].cellaIsMina == true)
-                return 0;
-            
-            $('.celleChiuse[data-row=' + rCella + '][data-coloumn=' + cCella + ']').addClass("celleBandierina");
+            //se click su una cella con la bandierina torna ad essere una cella chiusa
+            else if (this.matriceCelle[rCella][cCella].stato == "flag"){
+                $('.celleChiuse[data-row=' + rCella + '][data-coloumn=' + cCella + ']').removeClass("celleBandierina");
+                $('.celleChiuse[data-row=' + rCella + '][data-coloumn=' + cCella + ']').addClass("cellaChiusa");
+                this.matriceCelle[rCella][cCella].stato = "chiusa";
+                //se hai preso un mina
+                if (this.matriceCelle[rCella][cCella].cellaIsMina == true){
+                    this.mineTrovate--;
+                }
+                this.bandierine--;
+                this.aggiornaNumeroMineNelCampo();
+            }
+
+            if(this.mineTrovate == this.numeroMine){
+                $("#feedback").text("hai vinto!!");
+                this.isGiocoInCorso = false;
+            }
+                
         }
         else
             alert("gioco finito");
+    }
+
+    aggiornaNumeroMineNelCampo(){
+        //aggiorna il numero di mine nel campo
+        //se il numero di mine è negativo esce un alert
+        if(this.numeroMine - this.bandierine < 0){
+            alert("hai messo troppe bandierine");
+            return 0;
+        }
+        $("#mine").text("mine presenti: " + (this.numeroMine - this.bandierine));
     }
 }

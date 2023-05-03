@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>campo minato</title>
     <!--foglio di stile-->
@@ -9,10 +10,34 @@
     <script src="script/myCella.js"></script>
     <script src="script/myCampo.js"></script>
     <script type="text/javascript">
-        const tabellone = new myCampo(10, 10);
-        //appena il documento è pronto
-        $(document).ready(function () {
-            //creo il campo e posiziono le mine
+        /*
+        *
+        *
+        * FUNZIONA TUTTO TRANNE SE SI MODIFICA IL NUMERO DI COLONNE
+        * 
+        * 
+        * */
+        const tabelloneDefault = new myCampo(10, 10, 10);
+        tabelloneDefault.creaCampoDaGioco();
+
+        function generaCampo() {
+            let numeroMine = 0;
+            let numeroRighe = 0;
+            //let numeroColonne = 0;
+            //prendi dalla select
+            let opzione = $('#difficolta').val();
+            if (opzione == "facile")
+                this.numeroMine = 10;
+            else if (opzione == "media")
+                this.numeroMine = 15;
+            else
+                this.numeroMine = 20;
+
+            this.numeroRighe = $('#righe').val();
+            //this.numeroColonne = $('#colonne').val();
+
+            const tabellone = new myCampo(this.numeroRighe, 10, this.numeroMine);
+            tabellone.eliminaTuttoHtml();
             tabellone.creaCampoDaGioco();
 
             //controllo i click con il sinistro
@@ -24,18 +49,34 @@
             });
 
             //controllo click con il sinistro
-            $(document).on('contextmenu', function(){
+            $('#celle').on('contextmenu', function () {
+                event.preventDefault();
+                let clickedElement = $(event.target);
                 //prendo riga e colonna
-                let rClick = parseInt($(this).attr("data-row"));
-                let cClick = parseInt($(this).attr("data-coloumn"));
+                let rClick = parseInt(clickedElement.attr("data-row"));
+                let cClick = parseInt(clickedElement.attr("data-coloumn"));
                 tabellone.mettiBandierina(rClick, cClick);
             });
-        });
+        }
     </script>
 </head>
 
 <body>
     <p><b>CAMPO MINATO</b></p>
+    <!--seleziona difficoltà-->
+    difficoltà:
+    <select id="difficolta" onchange="generaCampo()">
+        <option selected value="facile">facile</option>
+        <option value="media">media</option>
+        <option value="difficile">difficile</option>
+    </select>
+    <!--seleziona righe-->
+    righe:
+    <input type="number" value="10" min="10" max="30" id="righe" onchange="generaCampo()">
+
+    <!--colonne:
+    <input type="number" value="10" min="10" max="30" id="colonne" onchange="generaCampo()">-->
+
     <table align="center">
         <tr>
             <td>
@@ -46,10 +87,11 @@
                     </div>
                     <!--ripristina-->
                     <div class="cellaSchermo" id="ripristina">
-                        <button onclick="tabellone.ripristina()" ;>reset</button>
+                        <button onclick="tabelloneDefault.ripristina()">reset</button>
                     </div>
-                    <!--orologio-->
+                    <!--feedback-->
                     <div class="cellaSchermo" id="feedback">
+                        partita in corso...
                     </div>
                 </div>
                 <!--campo gioco con le varie celle-->
@@ -61,4 +103,5 @@
 
     </table>
 </body>
+
 </html>

@@ -21,7 +21,6 @@ button{
 
 /*campo da gioco*/
 .container-playground{
-    /*10 celle per riga*/
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
     display: grid;
     width: 500px;
@@ -42,6 +41,7 @@ button{
     width: 50px;
     height: 50px;
     font-size: 25pt;
+    text-align: center;
 }
 .celleBandierina{
     background-color: yellow;
@@ -56,11 +56,18 @@ button{
     height: 50px;
 }
 body{
-    background-color: lightgreen;
+    background-color: antiquewhite;
     text-align: center;
 }
 p{
     text-align: center;
     font-size: 32pt;
+}
+#righe, #colonne{
+    width: 3%;
+}
+#crea{
+    width: 5%;
+    border: 1px solid rgba(0, 0, 0, 0.8);
 }
 
