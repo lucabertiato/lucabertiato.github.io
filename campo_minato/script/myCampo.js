@@ -12,7 +12,7 @@ class myCampo {
     generaEPosizionaMine() {
         let c, r;
         //per quante sono le mine da mettere
-        for (let i = 0; i <= this.numeroMine; i++) {
+        for (let i = 0; i < this.numeroMine; i++) {
             c = this.generaRandom(this.colonne);
             r = this.generaRandom(this.righe);
             //se la cella con coordinate r e c è gia una cella si deve rifare
@@ -25,11 +25,13 @@ class myCampo {
             //partendo alto a sinistra
             for (let contR = -1; contR <= 1; contR++) {
                 for (let contC = -1; contC <= 1; contC++) {
-                    let posR = r + contR;
-                    let posC = c + contC;
-                    //se non si è fuori dal campo
-                    if (posR >= 0 && posR < this.righe && posC >= 0 && posC < this.colonne)
-                        this.matriceCelle[posR][posC].numMineVicine++;
+                        let posR = r + contR;
+                        let posC = c + contC;
+                        //se non si è fuori dal campo
+                        if (posR >= 0 && posR < this.righe && posC >= 0 && posC < this.colonne){
+                            if(this.matriceCelle[posR][posC].cellaIsMina != null)
+                                this.matriceCelle[posR][posC].numMineVicine++;
+                        }
                 }
             }
         }
@@ -72,6 +74,7 @@ class myCampo {
     controlloClick(rigaCella, colonnaCella) {
         //se il gioco non è terminato
         if (this.isGiocoInCorso) {
+
             //se click su cella aperta
             if (this.matriceCelle[rigaCella][colonnaCella].stato == "aperta")
                 return 0;
@@ -84,27 +87,22 @@ class myCampo {
                 this.visualizzaTutteMine();
                 return 0;
             }
+            
+            $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaBianca");
+            if(this.matriceCelle[rigaCella][colonnaCella].numMineVicine != 0)
+                $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').html(this.matriceCelle[rigaCella][colonnaCella].numMineVicine);
+
+            this.matriceCelle[rigaCella][colonnaCella].stato = "aperta";
+
+            
+
             //se non è una mina può essere due cose
-            else {
-                //o bianca
-                if (this.matriceCelle[rigaCella][colonnaCella].numMineVicine == 0) {
-                    $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaBianca");
-                    for(var contR = rigaCella-1; contR <=rigaCella + 1; contR++){
-                        for (let contC = colonnaCella-1; contC <= colonnaCella+1; contC++) {
-                            if (contR >= 0 && contR < this.righe && contC >= 0 && contC < this.colonne)
-                                this.controlloClick(contR, contC);
-                        }
-                    }
-                }
-                //o una vicina ad una cella
-                else {
-                    $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaBianca");
-                    $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').html(this.matriceCelle[rigaCella][colonnaCella].numMineVicine);
-                    for(var contR = rigaCella-1; contR <=rigaCella + 1; contR++){
-                        for (let contC = colonnaCella-1; contC <= colonnaCella+1; contC++) {
-                            if (contR >= 0 && contR < this.righe && contC >= 0 && contC < this.colonne)
-                                this.controlloClick(contR, contC);
-                        }
+            if (this.matriceCelle[rigaCella][colonnaCella].numMineVicine == 0) {
+                $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaBianca");
+                for(var contR = rigaCella-1; contR <=rigaCella + 1; contR++){
+                    for (let contC = colonnaCella-1; contC <= colonnaCella+1; contC++) {
+                        if (contR >= 0 && contR < this.righe && contC >= 0 && contC < this.colonne)
+                            this.controlloClick(contR, contC);
                     }
                 }
             }
@@ -124,26 +122,17 @@ class myCampo {
         }
     }
 
-    mettiBandierina(cellaClick) {
+    mettiBandierina(rCella, cCella) {
         if (this.isGiocoInCorso) {
-            //nel caso di cella già aperta
-            if (cellaClick.getAttribute("class") == "celleAperte")
+            //se click su cella aperta
+            //if (this.matriceCelle[rCella][cCella].stato == "aperta")
+               // return 0;
+
+            //se hai preso un mina
+            if (this.matriceCelle[rCella][cCella].cellaIsMina == true)
                 return 0;
-
-            //se cella con la bandierina
-            else if (cellaClick.getAttribute("class") == "celleBandierina") {
-                $(cellaClick).removeClass("celleBandierina");
-                $(cellaClick).addClass("celleChiuse");
-            }
-
-            //se cella chiusa
-            else {
-                //cambio classe
-                $(document).ready(function () {
-                    $(cellaClick).removeClass("celleChiuse");
-                    $(cellaClick).addClass("celleBandierina");
-                });
-            }
+            
+            $('.celleChiuse[data-row=' + rCella + '][data-coloumn=' + cCella + ']').addClass("celleBandierina");
         }
         else
             alert("gioco finito");

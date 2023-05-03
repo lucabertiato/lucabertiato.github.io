@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>campo minato</title>
-        <!--foglio di stile-->
-        <link rel="stylesheet" href="style/myStyle.css">
-        <!--script-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="script/myCella.js"></script>
-        <script src="script/myCampo.js"></script>
-        <script src="script/myOrologio.js"></script>
-        <script type="text/javascript">
-            const tabellone = new myCampo(10, 10);
-            //appena il documento è pronto
-            $(document).ready(function () {
-                //creo il campo e posiziono le mine
-                tabellone.creaCampoDaGioco();
+<head>
+    <title>campo minato</title>
+    <!--foglio di stile-->
+    <link rel="stylesheet" href="style/myStyle.css">
+    <!--script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script/myCella.js"></script>
+    <script src="script/myCampo.js"></script>
+    <script type="text/javascript">
+        const tabellone = new myCampo(10, 10);
+        //appena il documento è pronto
+        $(document).ready(function () {
+            //creo il campo e posiziono le mine
+            tabellone.creaCampoDaGioco();
 
-                //controllo i click con il sinistro
-                $('.celleChiuse').click(function () {
-                    //prendo riga e colonna
-                    let rigaClick = parseInt($(this).attr("data-row"));
-                    let colonnaClick = parseInt($(this).attr("data-coloumn"));
-                    tabellone.controlloClick(rigaClick, colonnaClick);
-                });
+            //controllo i click con il sinistro
+            $('.celleChiuse').on('click', function () {
+                //prendo riga e colonna
+                let rigaClick = parseInt($(this).attr("data-row"));
+                let colonnaClick = parseInt($(this).attr("data-coloumn"));
+                tabellone.controlloClick(rigaClick, colonnaClick);
             });
-        </script>
-    </head>
 
-    <body>
-        <div class="container-header">
-            <!--numero di mine presenti-->
-            <div class="cellaSchermo" id="mine">
-                mine:
-            </div>
-            <!--ripristina-->
-            <div class="cellaSchermo" id="ripristina">
-                <button onclick="tabellone.ripristina()" ;>reset</button>
-            </div>
-            <!--orologio-->
-            <div class="cellaSchermo" id="feedback">
-            </div>
-        </div>
-        <!--campo gioco con le varie celle-->
-        <div class="container-playground" id="celle">
+            //controllo click con il sinistro
+            $(document).on('contextmenu', function(){
+                //prendo riga e colonna
+                let rClick = parseInt($(this).attr("data-row"));
+                let cClick = parseInt($(this).attr("data-coloumn"));
+                tabellone.mettiBandierina(rClick, cClick);
+            });
+        });
+    </script>
+</head>
 
-        </div>
+<body>
+    <p><b>CAMPO MINATO</b></p>
+    <table align="center">
+        <tr>
+            <td>
+                <div class="container-header">
+                    <!--numero di mine presenti-->
+                    <div class="cellaSchermo" id="mine">
+                        mine:
+                    </div>
+                    <!--ripristina-->
+                    <div class="cellaSchermo" id="ripristina">
+                        <button onclick="tabellone.ripristina()" ;>reset</button>
+                    </div>
+                    <!--orologio-->
+                    <div class="cellaSchermo" id="feedback">
+                    </div>
+                </div>
+                <!--campo gioco con le varie celle-->
+                <div class="container-playground" id="celle">
 
-        
-    </body>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</body>
 </html>
