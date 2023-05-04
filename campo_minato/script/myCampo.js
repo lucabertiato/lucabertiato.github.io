@@ -117,6 +117,7 @@ class myCampo {
 
             if(this.aperte == this.totCelle - this.numeroMine){
                 $("#feedback").text("hai vinto!!");
+                this.visualizzaTutteMine();
                 this.isGiocoInCorso = false;
             }
         }
@@ -163,6 +164,7 @@ class myCampo {
             }
 
             if(this.mineTrovate == this.numeroMine){
+                this.visualizzaTutteMine();
                 $("#feedback").text("hai vinto!!");
                 this.isGiocoInCorso = false;
             }
