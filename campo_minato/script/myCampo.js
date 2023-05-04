@@ -96,6 +96,7 @@ class myCampo {
             }
 
             //altrimenti hai preso una cella normale
+            $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').removeClass("celleBandierina");
             $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaBianca");
             if(this.matriceCelle[rigaCella][colonnaCella].numMineVicine != 0)
                 $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').html(this.matriceCelle[rigaCella][colonnaCella].numMineVicine);
@@ -106,6 +107,7 @@ class myCampo {
 
             //se hai preso una cella vuota
             if (this.matriceCelle[rigaCella][colonnaCella].numMineVicine == 0) {
+                $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').removeClass("celleBandierina");
                 $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaBianca");
                 for(var contR = rigaCella-1; contR <=rigaCella + 1; contR++){
                     for (let contC = colonnaCella-1; contC <= colonnaCella+1; contC++) {
