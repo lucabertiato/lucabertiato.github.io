@@ -66,15 +66,6 @@
                 let cClick = parseInt(clickedElement.attr("data-coloumn"));
                 tabellone.mettiBandierina(rClick, cClick);
             });
-            
-            $('.cellaBianca').on('contextmenu', function () {
-                event.preventDefault();
-                let clickedElement = $(event.target);
-                //prendo riga e colonna
-                let rClick = parseInt(clickedElement.attr("data-row"));
-                let cClick = parseInt(clickedElement.attr("data-coloumn"));
-                tabellone.mettiBandierina(rClick, cClick);
-            });
         }
     </script>
 </head>
