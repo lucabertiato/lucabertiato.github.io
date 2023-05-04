@@ -23,7 +23,7 @@ button{
 .container-playground{
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
     display: grid;
-    width: 500px;
+    width: auto;
 }
 /*tipi di celle*/
 .celleChiuse{
