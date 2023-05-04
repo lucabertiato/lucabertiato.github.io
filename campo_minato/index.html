@@ -49,15 +49,7 @@
             });
 
             //controllo click con il sinistro
-            $('.celleChiuse').on('contextmenu', function () {
-                event.preventDefault();
-                let clickedElement = $(event.target);
-                //prendo riga e colonna
-                let rClick = parseInt(clickedElement.attr("data-row"));
-                let cClick = parseInt(clickedElement.attr("data-coloumn"));
-                tabellone.mettiBandierina(rClick, cClick);
-            });
-            $('.celleBandierina').on('contextmenu', function () {
+            $('#celle').on('contextmenu', function () {
                 event.preventDefault();
                 let clickedElement = $(event.target);
                 //prendo riga e colonna
