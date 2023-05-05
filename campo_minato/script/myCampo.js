@@ -51,8 +51,15 @@ class myCampo {
 
     //creo il campo con la grafica
     creaCampoDaGioco() {
+        let str = "";
         //modifico la prima cella dello schermo in alto
         $("#mine").text("mine presenti: " + this.numeroMine);
+
+        for(let i = 0; i < this.colonne; i++){
+            str += "auto ";
+        }
+
+        $(".container-playground").css("grid-template-columns", str);
 
         //per tutte le righe
         for (let i = 0; i < this.righe; i++) {

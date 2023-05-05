@@ -21,9 +21,8 @@ button{
 
 /*campo da gioco*/
 .container-playground{
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
     display: grid;
-    width: auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
 }
 /*tipi di celle*/
 .celleChiuse{

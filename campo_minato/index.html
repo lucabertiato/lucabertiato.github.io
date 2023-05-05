@@ -23,20 +23,24 @@
         function generaCampo() {
             let numeroMine = 0;
             let numeroRighe = 0;
-            //let numeroColonne = 0;
+            let numeroColonne = 0;
             //prendi dalla select
             let opzione = $('#difficolta').val();
+            if(opzione == "null"){
+                alert("scegliere una difficoltà");
+                return 0;
+            }
             if (opzione == "facile")
-                this.numeroMine = 10;
+                numeroMine = 10;
             else if (opzione == "media")
-                this.numeroMine = 15;
+                numeroMine = 15;
             else
-                this.numeroMine = 20;
+                numeroMine = 20;
 
-            this.numeroRighe = $('#righe').val();
-            //this.numeroColonne = $('#colonne').val();
+            numeroRighe = $('#righe').val();
+            numeroColonne = $('#colonne').val();
 
-            const tabellone = new myCampo(this.numeroRighe, 10, this.numeroMine);
+            const tabellone = new myCampo(numeroRighe, numeroColonne, numeroMine);
             tabellone.eliminaTuttoHtml();
             tabellone.creaCampoDaGioco();
 
@@ -75,16 +79,17 @@
     <!--seleziona difficoltà-->
     difficoltà:
     <select id="difficolta" onchange="generaCampo()">
-        <option selected value="facile">facile</option>
+        <option selected value="nul"></option>
+        <option value="facile">facile</option>
         <option value="media">media</option>
         <option value="difficile">difficile</option>
     </select>
     <!--seleziona righe-->
     righe:
-    <input type="number" value="10" min="10" max="30" id="righe" onchange="generaCampo()">
+    <input type="number" min="10" max="30" id="righe" onchange="generaCampo()">
 
-    <!--colonne:
-    <input type="number" value="10" min="10" max="30" id="colonne" onchange="generaCampo()">-->
+    colonne:
+    <input type="number" min="10" max="30" id="colonne" onchange="generaCampo()">
 
     <table align="center">
         <tr>
