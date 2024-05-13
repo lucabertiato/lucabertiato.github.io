@@ -10,20 +10,11 @@
     <script src="script/myCella.js"></script>
     <script src="script/myCampo.js"></script>
     <script type="text/javascript">
-        /*
-        *
-        *
-        * FUNZIONA TUTTO TRANNE SE SI MODIFICA IL NUMERO DI COLONNE
-        * 
-        * 
-        * */
         const tabelloneDefault = new myCampo(10, 10, 10);
         tabelloneDefault.creaCampoDaGioco();
 
         function generaCampo() {
             let numeroMine = 0;
-            let numeroRighe = 0;
-            let numeroColonne = 0;
             //prendi dalla select
             let opzione = $('#difficolta').val();
             if(opzione == "null"){
@@ -37,10 +28,7 @@
             else
                 numeroMine = 20;
 
-            numeroRighe = $('#righe').val();
-            numeroColonne = $('#colonne').val();
-
-            const tabellone = new myCampo(numeroRighe, numeroColonne, numeroMine);
+            const tabellone = new myCampo(10, 10, numeroMine);
             tabellone.eliminaTuttoHtml();
             tabellone.creaCampoDaGioco();
 
@@ -75,7 +63,7 @@
 </head>
 
 <body>
-    <p><b>CAMPO MINATO</b></p>
+    <h1>Campo Minato</h1>
     <!--seleziona difficoltà-->
     difficoltà:
     <select id="difficolta" onchange="generaCampo()">
@@ -84,12 +72,6 @@
         <option value="media">media</option>
         <option value="difficile">difficile</option>
     </select>
-    <!--seleziona righe-->
-    righe:
-    <input type="number" min="10" max="30" id="righe" onchange="generaCampo()">
-
-    colonne:
-    <input type="number" min="10" max="30" id="colonne" onchange="generaCampo()">
 
     <table align="center">
         <tr>
@@ -110,7 +92,7 @@
                 </div>
                 <!--campo gioco con le varie celle-->
                 <div class="container-playground" id="celle">
-
+                    <!--vari div con tutte le celle create in modo dinamico-->
                 </div>
             </td>
         </tr>

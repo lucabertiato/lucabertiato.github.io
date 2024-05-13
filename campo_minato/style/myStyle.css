@@ -1,39 +1,52 @@
-/*schermo in alto*/
-.container-header{
+/* Schermo in alto */
+.container-header {
     display: grid;
     grid-template-columns: auto auto auto;
     width: 520px;
     text-align: center;
     margin-top: 5px;
     height: 20px;
-}
-.cellaSchermo{
     border: 1px solid black;
-    background-color: lightskyblue;
+
 }
 
-/*bottone reset*/
-button{
-    background-color: lightskyblue;
-    border: 1px solid lightskyblue;
+.cellaSchermo {
+    border: 1px solid black;
+    background-color: #007BFF;
+    /* Cambiato per abbinare all'index */
+    color: white;
+    /* Aggiunto per migliorare la leggibilità */
+}
+
+/* Bottone reset */
+button {
+    border: 1px solid black;
+    background-color: #007BFF;
+    color: white;
     width: 100%;
+    height: 20px;
+
 }
 
-/*campo da gioco*/
-.container-playground{
+/* Campo da gioco */
+.container-playground {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: repeat(10, auto);
+    /* Simplificato */
 }
-/*tipi di celle*/
-.celleChiuse{
+
+/* Tipi di celle */
+.celleChiuse {
     background-color: lightgray;
     width: 50px;
     height: 50px;
     border: 1px solid rgba(0, 0, 0, 0.8);
 }
-.celleChiuse:hover{
+
+.celleChiuse:hover {
     background-color: rgb(93, 93, 97);
 }
+
 .cellaBianca {
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.8);
@@ -42,31 +55,42 @@ button{
     font-size: 25pt;
     text-align: center;
 }
-.celleBandierina{
+
+.celleBandierina {
     background-color: yellow;
+    /* Mantenuto per evidenziare le bandierine */
     border: 1px solid rgba(0, 0, 0, 0.8);
     width: 50px;
     height: 50px;
 }
-.cellaMina{
+
+.cellaMina {
     background-color: red;
+    /* Mantenuto per evidenziare le mine */
     border: 1px solid rgba(0, 0, 0, 0.8);
     width: 50px;
     height: 50px;
 }
-body{
-    background-color: antiquewhite;
+
+/* Body e paragrafi */
+body {
+    background-color: #f4f4f4;
+    /* Cambiato per abbinare all'index */
+    font-family: Arial, sans-serif;
+    /* Font uniforme */
+    color: #333;
+    /* Colore del testo */
     text-align: center;
+    margin-top: 50px;
+    background-color: #f4f4f4;
 }
-p{
+
+h1 {
     text-align: center;
-    font-size: 32pt;
+    color: #007BFF;
 }
-#righe, #colonne{
-    width: 3%;
-}
-#crea{
+
+#crea {
     width: 5%;
     border: 1px solid rgba(0, 0, 0, 0.8);
 }
-
