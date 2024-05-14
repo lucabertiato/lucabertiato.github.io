@@ -96,9 +96,9 @@ class myCampo {
             //se hai preso un mina
             if (this.matriceCelle[rigaCella][colonnaCella].cellaIsMina == true) {
                 $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaMina");
-                $("#feedback").text("hai perso");
                 this.isGiocoInCorso = false;
                 this.visualizzaTutteMine();
+                window.location.href = "lose.html";
                 return 0;
             }
 
@@ -128,10 +128,12 @@ class myCampo {
                 $("#feedback").text("hai vinto!!");
                 this.visualizzaTutteMine();
                 this.isGiocoInCorso = false;
+                window.location.href = "win.html";
             }
         }
         else
-            alert("gioco finito");
+            window.location.href = "lose.html";
+
     }
 
     visualizzaTutteMine() {
