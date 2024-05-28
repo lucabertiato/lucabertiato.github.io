@@ -101,7 +101,7 @@ class myCampo {
                 $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaMina");
                 this.isGiocoInCorso = false;
                 this.visualizzaTutteMine();
-                //window.location.href = "lose.html";
+                window.location.href = "lose.html";
                 return 0;
             }
 
@@ -131,11 +131,11 @@ class myCampo {
                 $("#feedback").text("hai vinto!!");
                 this.visualizzaTutteMine();
                 this.isGiocoInCorso = false;
-                //window.location.href = "win.html";
+                window.location.href = "win.html";
             }
         }
-        //else
-            //window.location.href = "lose.html";
+        else
+            window.location.href = "lose.html";
 
     }
 
