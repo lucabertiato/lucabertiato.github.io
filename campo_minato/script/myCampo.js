@@ -16,13 +16,16 @@ class myCampo {
         let c, r;
         //per quante sono le mine da mettere
         for (let i = 0; i < this.numeroMine; i++) {
+            //genera coordinate
             c = this.generaRandom(this.colonne);
             r = this.generaRandom(this.righe);
-            //se la cella con coordinate r e c è gia una cella si deve rifare
+            //se la cella con coordinate r e c è gia una cella si deve rifare 
+            //finchè non ne trova una libera
             while (this.matriceCelle[r][c].cellaIsMina == true) {
                 c = this.generaRandom(this.colonne);
                 r = this.generaRandom(this.righe);
             }
+            //segnalo la presenza di una mina
             this.matriceCelle[r][c].cellaIsMina = true;
             //vicino alla mina segno le altre celle adiacenti comprese quelle in obliquo
             //partendo alto a sinistra
@@ -98,7 +101,7 @@ class myCampo {
                 $('.celleChiuse[data-row=' + rigaCella + '][data-coloumn=' + colonnaCella + ']').addClass("cellaMina");
                 this.isGiocoInCorso = false;
                 this.visualizzaTutteMine();
-                window.location.href = "lose.html";
+                //window.location.href = "lose.html";
                 return 0;
             }
 
@@ -128,11 +131,11 @@ class myCampo {
                 $("#feedback").text("hai vinto!!");
                 this.visualizzaTutteMine();
                 this.isGiocoInCorso = false;
-                window.location.href = "win.html";
+                //window.location.href = "win.html";
             }
         }
-        else
-            window.location.href = "lose.html";
+        //else
+            //window.location.href = "lose.html";
 
     }
 
